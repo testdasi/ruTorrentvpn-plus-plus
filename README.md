@@ -52,8 +52,45 @@ Based on [binhex/arch-rtorrentvpn](https://hub.docker.com/r/binhex/arch-rtorrent
         -e PUID=<uid for user> \
         -e PGID=<gid for user> \
         testdasi/ruTorrentvpn-plus-plus
-  
-  ## Notes
+
+## Unraid + PIA example
+    docker run -d \
+        --name='rutorrentvpn-plus-plus' \
+    	--cap-add=NET_ADMIN \
+        -e TZ="Europe/London" \
+        -e HOST_OS="Unraid" \
+        -e 'VPN_ENABLED'='yes' \
+        -e 'VPN_USER'='VPN_USER' \
+        -e 'VPN_PASS'='VPN_PASS' \
+        -e 'VPN_PROV'='pia' \
+        -e 'VPN_OPTIONS'='' \
+        -e 'STRICT_PORT_FORWARD'='yes' \
+        -e 'LAN_NETWORK'='192.168.0.1/24' \
+        -e 'NAME_SERVERS'='127.2.2.2' \
+        -e 'ADDITIONAL_PORTS'='' \
+        -e 'ENABLE_PRIVOXY'='yes' \
+        -e 'ENABLE_AUTODL_IRSSI'='no' \
+        -e 'ENABLE_RPC2'='yes' \
+        -e 'ENABLE_RPC2_AUTH'='yes' \
+        -e 'RPC2_USER'='RPC2_USER' \
+        -e 'RPC2_PASS'='RPC2_PASS' \
+        -e 'ENABLE_WEBUI_AUTH'='yes' \
+        -e 'WEBUI_USER'='WEBUI_USER' \
+        -e 'WEBUI_PASS'='WEBUI_PASS' \
+        -e 'DEBUG'='no' \
+        -e 'PHP_TZ'='UTC' \
+        -e 'UMASK'='000' \
+        -e 'PUID'='99' \
+        -e 'PGID'='100' \
+        -p '5000:5000/tcp' \
+        -p '9080:9080/tcp' \
+        -p '9443:9443/tcp' \
+        -p '8118:8118/tcp' \
+        -v '/mnt/user/appdata/rtorrentvpn':'/config':'rw' \
+        -v '/mnt/user/downloads/torrent/':'/data':'rw' \
+        'testdasi/rutorrentvpn-plus-plus'
+
+## Notes
 * I code for fun and my personal uses; hence, these niche functionalties that nobody asks for. ;)
 * Tested exclusively with [PIA ovpn files](https://www.privateinternetaccess.com/openvpn/openvpn.zip)
 * Intended to be used with Unraid but would work in other x86/amd64 environments too.
