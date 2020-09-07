@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/bin/bash /temp/change-binhex.sh
+#/bin/bash /temp/change-binhex.sh
 /bin/bash /temp/random-ovpn.sh
 /bin/bash /temp/stubby.sh
 
