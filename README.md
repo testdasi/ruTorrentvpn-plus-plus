@@ -56,7 +56,7 @@ Based on [binhex/arch-rtorrentvpn](https://hub.docker.com/r/binhex/arch-rtorrent
 ## Unraid + PIA example
     docker run -d \
         --name='rutorrentvpn-plus-plus' \
-    	--cap-add=NET_ADMIN \
+        --cap-add=NET_ADMIN \
         -e TZ="Europe/London" \
         -e HOST_OS="Unraid" \
         -e 'VPN_ENABLED'='yes' \
