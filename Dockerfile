@@ -8,9 +8,9 @@ RUN pacman -Syu \
 
 ADD stuff /temp
 
-#Expose port
-EXPOSE 53/tcp
-EXPOSE 53/udp
+#Expose port    -   disabled for now
+#EXPOSE 53/tcp
+#EXPOSE 53/udp
 
 # run init script
 CMD ["/bin/bash", "/temp/startup.sh"]
