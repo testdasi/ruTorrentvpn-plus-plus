@@ -4,7 +4,7 @@ ruTorrent with OpenVPN client, http proxy, dns-over-tls and a random ovpn picker
 ## High-level instructions
 * Run docker - first run will stop itself due to missing ovpn file
 * Copy / extract your ovpn files in the host path that is mapped to */config/ovpn_files* (at least 1 file is required, must have .ovpn extension)
-* If there are separate cert files (crt + pem), place them in host location path that is mapped to */config/ovpn*
+* If there are separate cert files (crt + pem), place them in host location path that is mapped to */config/ovpn*. This is not required if you use PIA ovpn files as they include the certs in the ovpn.
 * Start docker again
 
 ## Credit
@@ -86,8 +86,8 @@ Based on [binhex/arch-rtorrentvpn](https://hub.docker.com/r/binhex/arch-rtorrent
         -p '9080:9080/tcp' \
         -p '9443:9443/tcp' \
         -p '8118:8118/tcp' \
-        -v '/mnt/user/appdata/rtorrentvpn':'/config':'rw' \
-        -v '/mnt/user/downloads/torrent/':'/data':'rw' \
+        -v '/mnt/user/appdata/rutorrentvpn-plus-plus':'/config':'rw' \
+        -v '/mnt/user/downloads/rutorrentvpn-plus-plus/':'/data':'rw' \
         'testdasi/rutorrentvpn-plus-plus'
 
 ## Notes
