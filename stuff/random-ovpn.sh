@@ -10,4 +10,3 @@ ls $src/*.ovpn | sort -R | tail -1 | while read file; do
     cp --force "$file" "$des/openvpn.ovpn"
     echo "[info] "${file}" picked"
 done
-
