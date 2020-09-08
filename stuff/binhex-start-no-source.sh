@@ -18,8 +18,8 @@ else
 	if [[ ! -z "${VPN_USER}" && ! -z "${VPN_PASS}" ]]; then
 
 		# store credentials in separate file for authentication
-		if ! $(grep -Fq "auth-user-pass credentials.conf" "${VPN_CONFIG}"); then
-			sed -i -e 's/auth-user-pass.*/auth-user-pass credentials.conf/g' "${VPN_CONFIG}"
+		if ! $(grep -Fq "auth-user-pass credentials.conf" /config/openvpn/openvpn.ovpn); then
+			sed -i -e 's/auth-user-pass.*/auth-user-pass credentials.conf/g' /config/openvpn/openvpn.ovpn
 		fi
 
 		echo "${VPN_USER}" > /config/openvpn/credentials.conf
@@ -43,43 +43,43 @@ else
 	# note - do not remove redirection of gateway for ipv6 - required for certain vpn providers (airvpn)
 
 	# remove persist-tun from ovpn file if present, this allows reconnection to tunnel on disconnect
-	sed -i '/^persist-tun/d' "${VPN_CONFIG}"
+	sed -i '/^persist-tun/d' /config/openvpn/openvpn.ovpn
 
 	# remove reneg-sec from ovpn file if present, this is removed to prevent re-checks and dropouts
-	sed -i '/^reneg-sec.*/d' "${VPN_CONFIG}"
+	sed -i '/^reneg-sec.*/d' /config/openvpn/openvpn.ovpn
 
 	# remove up script from ovpn file if present, this is removed as we do not want any other up/down scripts to run
-	sed -i '/^up\s.*/d' "${VPN_CONFIG}"
+	sed -i '/^up\s.*/d' /config/openvpn/openvpn.ovpn
 
 	# remove down script from ovpn file if present, this is removed as we do not want any other up/down scripts to run
-	sed -i '/^down\s.*/d' "${VPN_CONFIG}"
+	sed -i '/^down\s.*/d' /config/openvpn/openvpn.ovpn
 
 	# remove ipv6 configuration from ovpn file if present (iptables not configured to support ipv6)
-	sed -i '/^route-ipv6/d' "${VPN_CONFIG}"
+	sed -i '/^route-ipv6/d' /config/openvpn/openvpn.ovpn
 
 	# remove ipv6 configuration from ovpn file if present (iptables not configured to support ipv6)
-	sed -i '/^ifconfig-ipv6/d' "${VPN_CONFIG}"
+	sed -i '/^ifconfig-ipv6/d' /config/openvpn/openvpn.ovpn
 
 	# remove ipv6 configuration from ovpn file if present (iptables not configured to support ipv6)
-	sed -i '/^tun-ipv6/d' "${VPN_CONFIG}"
+	sed -i '/^tun-ipv6/d' /config/openvpn/openvpn.ovpn
 
 	# remove dhcp option for dns ipv6 configuration from ovpn file if present (dns defined via name_server env var value)
-	sed -i '/^dhcp-option DNS6.*/d' "${VPN_CONFIG}"
+	sed -i '/^dhcp-option DNS6.*/d' /config/openvpn/openvpn.ovpn
 
 	# remove windows specific openvpn options
-	sed -i '/^route-method exe/d' "${VPN_CONFIG}"
-	sed -i '/^service\s.*/d' "${VPN_CONFIG}"
-	sed -i '/^block-outside-dns/d' "${VPN_CONFIG}"
+	sed -i '/^route-method exe/d' /config/openvpn/openvpn.ovpn
+	sed -i '/^service\s.*/d' /config/openvpn/openvpn.ovpn
+	sed -i '/^block-outside-dns/d' /config/openvpn/openvpn.ovpn
 
 	if [[ "${DEBUG}" == "true" ]]; then
-		echo "[debug] Contents of ovpn file ${VPN_CONFIG} as follows..." ; cat "${VPN_CONFIG}"
+		echo "[debug] Contents of ovpn file ${VPN_CONFIG} as follows..." ; cat /config/openvpn/openvpn.ovpn
 	fi
 
 	# assign any matching ping options in ovpn file to variable (used to decide whether to specify --keealive option in openvpn.sh)
-	vpn_ping=$(cat "${VPN_CONFIG}" | grep -P -o -m 1 '^ping.*')
+	vpn_ping=$(cat /config/openvpn/openvpn.ovpn | grep -P -o -m 1 '^ping.*')
 
 	# forcibly set virtual network device to 'tun0/tap0' (referenced in iptables)
-	sed -i "s/^dev\s${VPN_DEVICE_TYPE}.*/dev ${VPN_DEVICE_TYPE}/g" "${VPN_CONFIG}"
+	sed -i "s/^dev\s${VPN_DEVICE_TYPE}.*/dev ${VPN_DEVICE_TYPE}/g" /config/openvpn/openvpn.ovpn
 
 	# get ip for local gateway (eth0)
 	DEFAULT_GATEWAY=$(ip route show default | awk '/default/ {print $3}')
