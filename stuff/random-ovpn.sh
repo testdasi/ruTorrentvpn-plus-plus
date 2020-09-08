@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Randomly pick an ovpn file from set and replace OpenVPN config with this new file
-
 echo "[info] Pick a random ovpn file"
 src='/config/openvpn_files'
 des='/config/openvpn'
