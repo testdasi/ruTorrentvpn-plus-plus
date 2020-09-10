@@ -6,10 +6,10 @@ cp /temp/new_start.sh /root/start.sh
 chmod +x /root/start.sh
 
 #random VPN picker
-/bin/bash /temp/random-ovpn.sh
+source /temp/random-ovpn.sh
 
 #stubby initialisation
-/bin/bash /temp/stubby.sh
+source /temp/stubby.sh
 
 # binhex init script
-/bin/bash /usr/local/bin/init.sh
+source /usr/local/bin/init.sh
