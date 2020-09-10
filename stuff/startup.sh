@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#Attempt to fix binhex scripts
-#/bin/bash /temp/change-binhex.sh
+#new start scripts
+rm -f /root/start.sh
+cp /temp/new_start.sh /root/start.sh
+chmod +x /root/start.sh
 
 #random VPN picker
 /bin/bash /temp/random-ovpn.sh
