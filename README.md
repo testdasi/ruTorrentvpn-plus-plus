@@ -94,4 +94,8 @@ Based on [binhex/arch-rtorrentvpn](https://hub.docker.com/r/binhex/arch-rtorrent
 * I code for fun and my personal uses; hence, these niche functionalties that nobody asks for. ;)
 * Tested exclusively with [PIA ovpn files](https://www.privateinternetaccess.com/openvpn/openvpn.zip)
 * Intended to be used with Unraid but would work in other x86/amd64 environments too.
+* If you like my work, [a donation to my burger fund](https://paypal.me/mersenne) is very much appreciated.
+
+[![Donate](https://raw.githubusercontent.com/testdasi/testdasi-unraid-repo/master/donate-button-small.png)](https://paypal.me/mersenne). 
+
   
